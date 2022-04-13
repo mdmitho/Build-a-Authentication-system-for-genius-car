@@ -28,7 +28,7 @@ const Register = () => {
         const email = event.target.email.value
         const password = event.target.password.value
 
-        createUserWithEmailAndPassword(email, password)
+        createUserWithEmailAndPassword(email, password,name)
       }
     return (
         <div className='register-form'>
