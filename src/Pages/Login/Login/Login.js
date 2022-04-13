@@ -4,6 +4,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () =>{ 
     const emailRef= useRef('') 
@@ -54,6 +55,7 @@ const navigateRegister = (event) =>{
           </Button>
         </Form>
         <p>New to Genius Car ? <Link to="/register" className="text-danger pe-auto text-decoration-none" onClick={navigateRegister}>Please Register</Link></p>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );
