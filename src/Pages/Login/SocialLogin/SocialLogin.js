@@ -2,21 +2,22 @@ import React from "react";
 import google from '../../../images/google logo.png'
 import facebook from '../../../images/facebook logo.png'
 import git from '../../../images/GitH logo.png'
-import {useSignInWithGoogle} from 'react-firebase-hooks/auth'
+import {useSignInWithGithub,useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init'
 import { Navigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
   let errorElement;
-  if (error) {
+  if (error || error1) {
 
     errorElement =  <div>
-        <p className="text-danger">Error: {error.message}</p>
+        <p className="text-danger">Error: {error?.message} {error1?.message}</p>
       </div>
- 
+
   }
-  if(user){
+  if(user || user1){
     Navigate('/home')
   }
   return (
@@ -36,7 +37,7 @@ const SocialLogin = () => {
         <img style={{width: '35px'}} src={facebook} alt=''/>
          <span className="px-2">  Facebook Sing IN</span>
       </button>
-      <button className="btn btn-info d-block  mx-auto w-50 my-3" >
+      <button onClick={()=>signInWithGithub()} className="btn btn-info d-block  mx-auto w-50 my-3" >
         <img style={{width: '30px'}} src={git} alt=''/>
          <span className="px-2">  Github Sing IN</span>
       </button>
